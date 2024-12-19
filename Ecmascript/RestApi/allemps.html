@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<input type="number" name="" id="t"><br>
+Name<input type="text" name="" id="nm"><br>
+email<input type="email" name="" id="email"><br>
+address<input type="text" name="" id="add"><br>
+password<input type="number" name="" id="pass"><br>
+<button onclick="show()">search</button>
+<button onclick="show1()">show data</button>
+<button onclick="addemp()">Add</button>
+<button onclick="updateemp()">Update</button>
+<button onclick="deleteemp()">Delete</button>
+<script>
+
+//Get
+async function show() {
+	try{
+	let res= await fetch ('https://layagec.pythonanywhere.com/emps/');
+	console.log(res);
+	let data = await res.json();
+	console.log(data);
+}
+catch(err){
+	console.log(err);
+}
+}
+async function show1(){
+	try{
+		let t=document.getElementById('t').value;
+		let res= await fetch (`https://layagec.pythonanywhere.com/emps/${t}/`);
+		console.log(res);
+		let data= await res.json();
+		console.log(data);
+	}
+	catch(err){
+		console.log(err);
+	}
+}
+
+//Post
+async function addemp() {
+	let data={
+		name:document.getElementById('nm').value,
+		email:document.getElementById('email').value,
+		address:document.getElementById('add').value,
+		password:document.getElementById('pass').value
+	}
+	let options = {
+		method: 'POST',
+		headers: {
+		   'Content-Type': 'application/json;charset=utf-8'
+		  },
+		body: JSON.stringify(data)
+		}
+	let res= await fetch('https://layagec.pythonanywhere.com/emps/',options);
+	if(res.status==201){
+		alert('employee added succesfully');
+	}
+}
+
+//Put
+async function updateemp() {
+   let t =document.getElementById('t').value;
+   var data={
+   	    name:document.getElementById('nm').value,
+		email:document.getElementById('email').value,
+		address:document.getElementById('add').value,
+		password:document.getElementById('pass').value
+   }
+   let options = {
+		method: 'PUT',
+		headers: {
+		   'Content-Type': 'application/json;charset=utf-8'
+		  },
+		body: JSON.stringify(data)
+   }
+   let res = await fetch(`https://layagec.pythonanywhere.com/emps/${t}/`,options);
+   if(res.status==200){
+   	alert('employee update successfully');
+   }
+}
+
+
+//delete
+async function deleteemp() {
+   let t =document.getElementById('t').value;
+   var data={
+   	    name:document.getElementById('nm').value,
+		email:document.getElementById('email').value,
+		address:document.getElementById('add').value,
+		password:document.getElementById('pass').value
+   }
+   let options = {
+		method: 'DELETE',
+		headers: {
+		   'Content-Type': 'application/json;charset=utf-8'
+		  },
+		body: JSON.stringify(data)
+   }
+   let res = await fetch(`https://layagec.pythonanywhere.com/emps/${t}/`,options);
+   if(res.status==204){
+   	alert('employee delete successfully');
+   }
+}
+</script>
+</body>
+</html>

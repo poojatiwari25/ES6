@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script>
+let a=10;
+console.log(a);
+a=20;
+console.log(a);
+var p = new Promise(function (resolve,reject) {
+	setTimeout(function () {
+		resolve(a=30);
+	},5000);
+})
+async function show(){
+	try{
+		let v = await p;
+		console.log(v);
+		let p1 = new Promise(function(resolve,reject){
+			setTimeout(function () {
+				resolve(a=40);
+			},3000);
+		})
+		let v1 = await p1;
+		console.log(v1);
+	}
+	catch(e){
+		console.log(e);
+	}
+}
+show();
+</script>
+</body>
+</html>

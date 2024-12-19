@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<input type="number" name="" id="t"><br>
+Name:<input type="text" name="" id="nm"><br>
+price:<input type="number" name="" id="price"><br>
+cat:<input type="text" name="" id="cat"><br>
+cmp:<input type="text" name="" id="cmp"><br>
+<button onclick="deletepro()">Delete</button>
+<script>
+async function deletepro() {
+   let t =document.getElementById('t').value;
+   var data={
+   	name:document.getElementById('nm').value,
+   	price:document.getElementById('price').value,
+   	cat:document.getElementById('cat').value,
+   	cmp:document.getElementById('cmp').value
+   }
+   let options = {
+		method: 'DELETE',
+		headers: {
+		   'Content-Type': 'application/json;charset=utf-8'
+		  },
+		body: JSON.stringify(data)
+   }
+   let res = await fetch(`https://layagec.pythonanywhere.com/product/${t}/`,options);
+   if(res.status==204){
+   	alert('product delete successfully');
+   }
+}
+</script>
+</body>
+</html>

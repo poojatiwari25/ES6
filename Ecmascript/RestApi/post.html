@@ -1,0 +1,36 @@
+<!-- Create or add product -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<input type="number" name=""  id="t"><br>
+Name<input type="text" name="" id="nm"><br>
+price<input type="number" name="" id="price"><br>
+cat<input type="text" name="" id="cat"><br>
+cmp<input type="text" name="" id="cmp"><br>
+<button onclick="addpro()">Add</button>
+<script>
+async function addpro() {
+	let data={
+		name:document.getElementById('nm').value,
+		price:document.getElementById('price').value,
+		cat:document.getElementById('cat').value,
+		cmp:document.getElementById('cmp').value
+	}
+	let options = {
+		method: 'POST',
+		headers: {
+		   'Content-Type': 'application/json;charset=utf-8'
+		  },
+		body: JSON.stringify(data)
+		}
+	let res= await fetch('https://layagec.pythonanywhere.com/product/',options);
+	if(res.status==201){
+		alert('product added succesfully');
+	}
+}
+</script>
+</body>
+</html>

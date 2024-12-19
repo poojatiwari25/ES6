@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script>
+let a =10;
+console.log(a);
+a=20;
+console.log(a);
+var p = new Promise(function(resolve,reject) {
+	setTimeout(function(){
+      //resolve(a=30);
+      reject('sorry unable to process the request');
+	},3000)
+});
+p.then(function(v){
+     console.log(v);
+}).catch(function(e) {
+	console.log(e);
+})
+</script>
+</body>
+</html>

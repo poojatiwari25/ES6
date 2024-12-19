@@ -1,0 +1,37 @@
+<!-- show and search the product -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<input type="number" name="" id="t"><br>
+<button onclick="show()">Search</button>
+<button onclick="show1()">Show data</button>
+<script>
+async function show() {
+	try{
+	let res= await fetch (`https://layagec.pythonanywhere.com/product/`);
+	console.log(res);
+	let data = await res.json();
+	console.log(data);
+}
+catch(err){
+	console.log(err);
+}
+}
+async function show1(){
+	try{
+		let t=document.getElementById('t').value;
+		let res= await fetch (`https://layagec.pythonanywhere.com/product/${t}/`);
+		console.log(res);
+		let data= await res.json();
+		console.log(data);
+	}
+	catch(err){
+		console.log(err);
+	}
+}
+</script>
+</body>
+</html>
